@@ -31,7 +31,7 @@ sub js : Local {
     my ( $self, $c ) = @_;
 
     # loads root/js/script1.js and root/js/script2.js
-    $c->stash->{js} = [qw/js_head site_renderer/];
+    $c->stash->{js} = [qw/js_head site_renderer pure jquery/];
 
     $c->forward('View::JavaScript');
 }
