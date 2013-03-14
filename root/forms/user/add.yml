@@ -1,0 +1,59 @@
+# root/forms/user/add.yml
+---
+  indicator: username
+  elements:
+    -
+        type: Text
+        name: username
+        label: Username
+        attributes:
+          title: Enter Username
+        constraints:
+            - Required
+            - 
+                type: Length
+                min: 4 
+                max: 20
+            -
+                type: DBIC::Unique
+                model: DBIC 
+                resultset: User 
+                column: username
+                message: Username taken
+    -
+        type: Text
+        name: email 
+        label: Email 
+        attributes:
+          title: Enter email 
+        constraints:
+            - Required
+            - Email
+            -
+                type: DBIC::Unique
+                model: DBIC 
+                resultset: User
+                column: email 
+                message: Email already in use
+    -
+        type: Password 
+        name: password 
+        label: Password
+        attributes:
+          title: Enter password
+        constraints:
+            - Required
+    -
+        type: Password 
+        name: repeatpassword 
+        label: Repeat Password
+        attributes:
+          title: Repeat password
+        constraints:
+            - Required
+    - 
+        type: Submit
+        name: submit
+        value: Register
+        attrs:
+          handler: submitForm

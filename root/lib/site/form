@@ -1,0 +1,4 @@
+<script type="text/javascript">
+</script>
+[%# Render the HTML::FormFu Form %]
+[% form %]

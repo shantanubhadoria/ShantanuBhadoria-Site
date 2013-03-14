@@ -1,0 +1,44 @@
+# root/forms/user.yml
+---
+  model_config: 
+    resultset: User
+    schema: DBIC
+  indicator: username 
+  elements:
+    - name: username
+      type: Text
+      label: Username
+      attributes:
+        title: Enter Username
+      constraints:
+        - Required
+        - type: Length
+          min: 4 
+          max: 20
+    - name: email
+      type: Text
+      label: Username
+      constraints:
+        - Required
+        - Email 
+    - name: password 
+      type: Password 
+      label: Password
+      attributes:
+        title: password
+      constraints:
+        - Required
+        - type: Length
+          min: 4 
+          max: 30
+    - name: password2
+      type: Password
+      label: Password2
+      attributes:
+        title: password2
+      constraints:
+        - Required
+        - type: Length
+          min: 4 
+          max: 30
+
