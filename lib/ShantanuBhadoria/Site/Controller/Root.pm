@@ -28,16 +28,21 @@ The root page (/)
 
 sub base :Chained('/') :PathPart('') :CaptureArgs(0){
     my ( $self, $c ) = @_;
+    $c->log->debug("In Base");
     $c->stash->{site_title} = 'Shantanu Bhadoria';
     $c->load_status_msgs;
 }
 
-sub index :Chained('base') :PathPart('') :Args(0) {
+sub index :Chained('/base') :PathPart('') :Args(0) {
     my ( $self, $c ) = @_;
+    $c->log->debug("In Index");
 
+    $c->stash(
+            template     => 'index.tt',
+            section_name => 'Home',
+        );
     $c->stash->{section_name} = 'Home';
     # Hello World
-    $c->response->body( $c->welcome_message );
 }
 
 =head2 default
@@ -46,7 +51,8 @@ Standard 404 error page
 
 =cut
 
-sub default :Path {
+#sub default :Path {
+sub default {#:Path {
     my ( $self, $c ) = @_;
     $c->response->body( 'Page not found' );
     $c->response->status(404);

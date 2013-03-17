@@ -29,11 +29,11 @@ use Catalyst qw/
 
     Assets
 
+    Session
+    Session::Store::FastMmap
+    Session::State::Cookie
     Authentication
     Authorization::Roles
-    Session
-    Session::State::Cookie
-    Session::Store::FastMmap
 /;
 
 extends 'Catalyst';
@@ -88,17 +88,12 @@ __PACKAGE__->config(
 
     'Plugin::Authentication' => {
         default => {
-            credential => {
-                class         => 'Password',
-                password_type => 'crypted'
-            },
-            store => {
-                class                     => 'DBIx::Class',
-                user_model                => 'ShantanuBhadoria::Site::Users',
+                class                     => 'SimpleDB',
+                user_model                => 'DBIC::User',
                 role_relation             => 'roles',
                 role_field                => 'name',
-                use_userdata_from_session => '1'
-            },
+                use_userdata_from_session => '1',
+                password_type             => 'self_check',
         },
     },
 );

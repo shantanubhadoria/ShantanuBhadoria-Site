@@ -88,7 +88,7 @@ __PACKAGE__->has_many(
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:qDjiqsIlL7m3RMMePfFfww
 
 __PACKAGE__->many_to_many(
-  "roles" => 'users_to_roles',
+  "roles" => 'user_role_maps',
   "role"
 );
 

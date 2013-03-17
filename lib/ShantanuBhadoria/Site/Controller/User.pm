@@ -4,8 +4,6 @@ use namespace::autoclean;
 
 BEGIN { extends 'Catalyst::Controller::HTML::FormFu'; }
 
-use TryCatch;
-
 =head1 NAME
 
 ShantanuBhadoria::Site::Controller::User - Catalyst Controller
@@ -25,6 +23,16 @@ Catalyst Controller.
 sub base :Chained('/base') :PathPart('user') :CaptureArgs(0) {
 }
 
+=head2 index
+
+=cut
+
+sub index :Path :Args(0) {
+    my ( $self, $c ) = @_;
+
+    $c->response->body('Matched ShantanuBhadoria::Site::Controller::User in User.');
+}
+
 =head2 add 
 
 =cut
@@ -41,28 +49,72 @@ sub add :Chained('base') :PathPart('add') :Args(0) :FormConfig {
     $form->stash->{context} = $c;
     
     if ( $form->submitted_and_valid ) {
-        my $user = $c->model('Schema::User')->new_result({});
+        my $user = $c->model('DBIC::User')->new_result({});
         $form->model->update($user);
         $c->response->redirect($c->uri_for($self->action_for('add'),
                 {mid => $c->set_status_msg("Registration Successful")}));
         $c->detach;
     } else {
         $c->assets->include("css/form.css");
-        $c->assets->include("js/form.js");
-        $c->assets->include("extjs/resources/css/ext-all.css");
-        $c->assets->include("extjs/ext-debug.js");
-        $c->assets->include("js/user.js");
+        #$c->assets->include("js/form.js");
+        #$c->assets->include("extjs/resources/css/ext-all.css");
+        #$c->assets->include("extjs/ext-debug.js");
+        #$c->assets->include("js/user.js");
     }
 }
 
-=head2 index
+=head2 login
 
 =cut
 
-sub index :Path :Args(0) {
+sub login :Chained('base') :PathPart('login') :Args(0) :FormConfig {
     my ( $self, $c ) = @_;
 
-    $c->response->body('Matched ShantanuBhadoria::Site::Controller::User in User.');
+    $c->stash(
+            template     => 'user/login.tt',
+            section_name => 'Login',
+        );
+
+    my $form = $c->stash->{form};
+    $form->stash->{context} = $c;
+    
+    if ( $form->submitted_and_valid ) {
+        if (
+            $c->authenticate({
+                    username => $c->req->params->{'username'},
+                    password => $c->req->params->{'password'}
+                }) 
+        )
+        {
+            $c->log->debug("*** Authenticated User ***");
+            ## $c->user now contains the information related to the user
+            $c->response->redirect($c->uri_for($self->action_for('login'),
+                {mid => $c->set_status_msg("Login Successful")}));
+        } else {
+            ### authentication failed.
+            $c->log->debug("*** Authentication Failed ***");
+            $c->response->redirect($c->uri_for($self->action_for('login'),
+                {mid => $c->set_status_msg("Login Failed")}));
+        }
+        $c->detach;
+    } else {
+        $c->assets->include("css/form.css");
+        #$c->assets->include("js/form.js");
+        #$c->assets->include("extjs/resources/css/ext-all.css");
+        #$c->assets->include("extjs/ext-debug.js");
+        #$c->assets->include("js/user.js");
+    }
+}
+
+=head2 logout
+
+=cut
+
+sub logout :Chained('base') :PathPart('logout') :Args(0) {
+    my ( $self, $c ) = @_;
+    $c->logout();
+    $c->response->redirect($c->uri_for($self->action_for('login'),
+            {mid => $c->set_status_msg("Logged Out")}));
 }
 
 
