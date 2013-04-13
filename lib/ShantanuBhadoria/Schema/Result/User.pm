@@ -68,6 +68,21 @@ __PACKAGE__->add_unique_constraint("username_UNIQUE", ["username"]);
 
 =head1 RELATIONS
 
+=head2 articles
+
+Type: has_many
+
+Related object: L<ShantanuBhadoria::Schema::Result::Article>
+
+=cut
+
+__PACKAGE__->has_many(
+  "articles",
+  "ShantanuBhadoria::Schema::Result::Article",
+  { "foreign.author_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 user_role_maps
 
 Type: has_many
@@ -84,8 +99,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2013-03-13 13:06:05
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:qDjiqsIlL7m3RMMePfFfww
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2013-03-18 11:01:48
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:6vBOI8Jq7E8D6aKTwiJWOQ
 
 __PACKAGE__->many_to_many(
   "roles" => 'user_role_maps',

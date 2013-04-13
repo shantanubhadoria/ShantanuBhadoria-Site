@@ -92,21 +92,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 permission_type
-
-Type: belongs_to
-
-Related object: L<ShantanuBhadoria::Schema::Result::PermissionType>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "permission_type",
-  "ShantanuBhadoria::Schema::Result::PermissionType",
-  { id => "permission_type_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
 =head2 role
 
 Type: belongs_to
@@ -122,9 +107,24 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
+=head2 permission_type
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2013-03-13 13:06:05
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:EIKWwb0Yopjrtt0pn53Eug
+Type: belongs_to
+
+Related object: L<ShantanuBhadoria::Schema::Result::PermissionType>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "permission_type",
+  "ShantanuBhadoria::Schema::Result::PermissionType",
+  { id => "permission_type_id" },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2013-03-18 11:01:48
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:NQmPh9ToUqOKWIpSCd0AAg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

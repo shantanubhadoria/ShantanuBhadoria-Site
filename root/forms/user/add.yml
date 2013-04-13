@@ -1,6 +1,6 @@
 # root/forms/user/add.yml
 ---
-  indicator: username
+  indicator: submit 
   elements:
     -
         type: Text

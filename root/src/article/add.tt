@@ -1,0 +1,5 @@
+[% IF c.check_user_roles('admin') %]
+[% INCLUDE site/form %]
+[% ELSE %]
+Insufficient Priviliges
+[% END %]

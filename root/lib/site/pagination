@@ -1,0 +1,22 @@
+<div id="paginationarea">
+  Page [% pagination.current_page %] of [% pagination.total_entries %] 
+  [% IF pagination %]
+    <a href="?page=[% pagination.first_page %]">&lt;&lt; First</a>
+    [% IF pagination.previous_page %]
+      <a href="?page=[% pagination.previous_page %]">&lt;</a>
+    [% END %]
+    [% IF pagination.previous_page %]
+      ...
+      <a href="?page=[% pagination.previous_page %]">[% pagination.previous_page %]</a>
+    [% END %]
+    <strong>[% pagination.current_page %]</strong>
+    [% IF pagination.next_page %]
+      <a href="?page=[% pagination.next_page %]">[% pagination.next_page %]</a>
+      ...
+    [% END %]
+    [% IF pagination.next_page %]
+      <a href="?page=[% pagination.next_page %]">&gt;</a>
+    [% END %]
+    <a href="?page=[% pagination.last_page %]">Last &gt;&gt;</a>
+  [% END %]
+</div>

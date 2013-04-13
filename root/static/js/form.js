@@ -8,5 +8,11 @@ var submitForm = function() {
       // form validation returned errors
       // invalid fields are masked automatically 
     }
+  });
+};
+
+tinyMCE.init({
+    // General options
+    mode : "textareas",
 });
-}
+

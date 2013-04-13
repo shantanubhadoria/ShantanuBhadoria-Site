@@ -96,6 +96,10 @@ __PACKAGE__->config(
                 password_type             => 'self_check',
         },
     },
+
+    'Plugin::Static::Simple' => {
+        ignore_extensions => [ qw/tt/ ],
+    },
 );
 
 # Start the application

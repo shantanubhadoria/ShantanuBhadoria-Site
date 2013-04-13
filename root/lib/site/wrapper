@@ -5,6 +5,11 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <title>[% site_title %]: [% section_name %]</title>
     [% c.assets.export %]
+    <!-- Load JQuery -->
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("jquery", "1");
+    </script>
   </head>
   <body>
     <div id="header">
@@ -12,6 +17,8 @@
       [% IF c.user_exists %]
       <div>[% c.user.username %]</div>
       <div><a href="/user/logout">Logout</a></div>
+      <div><a href="/user/roles">Roles</a></div>
+      <div><a href="/article/add">Add Article</a></div>
       [% ELSE %]
       <div><a href="/user/login">Login</a></div>
       [% END %]
@@ -19,6 +26,7 @@
         <a href="[% c.uri_for('/') %]">Home</a>
       </div>
     </div>
+    [% INCLUDE site/pagination %]
     <div id="contentarea">
       [% IF status_msg %]
       <div class="status_msg messageblock">[% status_msg %]</div>

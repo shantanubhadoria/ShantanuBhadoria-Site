@@ -1,0 +1,34 @@
+# root/forms/article/add.yml
+---
+  indicator: submit 
+  elements:
+    -
+        type: Text
+        name: title 
+        label: Title
+        attributes:
+          title: Enter Title
+        constraints:
+            - Required
+            - 
+                type: Length
+                min: 2 
+                max: 255
+    -
+        type: Textarea
+        name: content 
+        label: Content
+        attributes:
+          title: Enter Title
+        constraints:
+            - Required
+            - 
+                type: Length
+                min: 2
+                max: 255
+    - 
+        type: Submit
+        name: submit
+        value: Submit 
+        attrs:
+          handler: submitForm

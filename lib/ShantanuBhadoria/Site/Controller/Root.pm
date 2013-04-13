@@ -35,13 +35,22 @@ sub base :Chained('/') :PathPart('') :CaptureArgs(0){
 
 sub index :Chained('/base') :PathPart('') :Args(0) {
     my ( $self, $c ) = @_;
+    my $params = $c->req->params;
     $c->log->debug("In Index");
 
     $c->stash(
             template     => 'index.tt',
             section_name => 'Home',
         );
-    $c->stash->{section_name} = 'Home';
+    my $articles = $c->model('DBIC::Article')->search(
+        undef,
+        {
+            page => $params->{page} || 1,
+            rows => 10,
+        },
+    );
+    $c->stash->{pagination} = $articles->pager();
+    $c->stash->{articles}   = $articles;
     # Hello World
 }
 

@@ -1,0 +1,2 @@
+[% INCLUDE site/form %]
+<a href="/user/add">Register</a>

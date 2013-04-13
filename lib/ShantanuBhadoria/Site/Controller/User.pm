@@ -51,12 +51,35 @@ sub add :Chained('base') :PathPart('add') :Args(0) :FormConfig {
     if ( $form->submitted_and_valid ) {
         my $user = $c->model('DBIC::User')->new_result({});
         $form->model->update($user);
-        $c->response->redirect($c->uri_for($self->action_for('add'),
+        $c->response->redirect($c->uri_for($self->action_for('login'),
                 {mid => $c->set_status_msg("Registration Successful")}));
         $c->detach;
     } else {
         $c->assets->include("css/form.css");
-        #$c->assets->include("js/form.js");
+        $c->assets->include("js/form.js");
+    }
+}
+
+sub roles :Chained('base') :PathPart('roles') :Args(0) :FormConfig {
+    my ( $self, $c ) = @_;
+
+    $c->stash(
+            template     => 'user/roles.tt',
+            section_name => 'User Roles',
+        );
+
+    my $form = $c->stash->{form};
+    $form->stash->{context} = $c;
+    
+    if ( $form->submitted_and_valid ) {
+        my $user_role_map = $c->model('DBIC::UserRoleMap')->new_result({});
+        $form->model->update($user_role_map);
+        $c->response->redirect($c->uri_for($self->action_for('roles'),
+                {mid => $c->set_status_msg("Role Added")}));
+        $c->detach;
+    } else {
+        $c->assets->include("css/form.css");
+        $c->assets->include("js/form.js");
         #$c->assets->include("extjs/resources/css/ext-all.css");
         #$c->assets->include("extjs/ext-debug.js");
         #$c->assets->include("js/user.js");

@@ -1,0 +1,26 @@
+# root/forms/user/roles.yml
+---
+  indicator: submit 
+  elements:
+    - 
+        type: Select
+        name: user_id
+        model_config:
+          model: DBIC
+          resultset: User
+          label_column: username
+          id_column: id
+    - 
+        type: Select
+        name: role_id
+        model_config:
+          model: DBIC
+          resultset: Role
+          label_column: name 
+          id_column: id
+    - 
+        type: Submit
+        name: submit
+        value: Add Relationship 
+        attrs:
+          handler: submitForm

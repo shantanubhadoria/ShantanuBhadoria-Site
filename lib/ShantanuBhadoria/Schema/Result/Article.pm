@@ -40,16 +40,23 @@ __PACKAGE__->table("articles");
   is_nullable: 0
   size: 255
 
-=head2 handler
+=head2 title
 
   data_type: 'varchar'
   is_nullable: 0
   size: 255
 
-=head2 handler_params
+=head2 content
 
   data_type: 'text'
   is_nullable: 0
+
+=head2 author_id
+
+  data_type: 'integer'
+  extra: {unsigned => 1}
+  is_foreign_key: 1
+  is_nullable: 1
 
 =cut
 
@@ -70,10 +77,17 @@ __PACKAGE__->add_columns(
   },
   "url_alias",
   { data_type => "varchar", is_nullable => 0, size => 255 },
-  "handler",
+  "title",
   { data_type => "varchar", is_nullable => 0, size => 255 },
-  "handler_params",
+  "content",
   { data_type => "text", is_nullable => 0 },
+  "author_id",
+  {
+    data_type => "integer",
+    extra => { unsigned => 1 },
+    is_foreign_key => 1,
+    is_nullable => 1,
+  },
 );
 __PACKAGE__->set_primary_key("id");
 __PACKAGE__->add_unique_constraint(
@@ -118,6 +132,26 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 author
+
+Type: belongs_to
+
+Related object: L<ShantanuBhadoria::Schema::Result::User>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "author",
+  "ShantanuBhadoria::Schema::Result::User",
+  { id => "author_id" },
+  {
+    is_deferrable => 1,
+    join_type     => "LEFT",
+    on_delete     => "CASCADE",
+    on_update     => "CASCADE",
+  },
+);
+
 =head2 permissions
 
 Type: has_many
@@ -134,8 +168,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2013-03-13 13:06:05
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:gW191T9oEwssbtaEqUqutQ
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2013-03-18 11:01:48
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:uwGB9wI4nObq6TN1NIh2WA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
