@@ -1,4 +1,6 @@
 [% WHILE (article = articles.next) %]
+<div class="block" style="width:inherit">
 <h3><a href="/article/[% article.url_alias %]-[% article.id %]/">[% article.title %]</a></h3>
 [% article.content %]
+</div>
 [% END %]

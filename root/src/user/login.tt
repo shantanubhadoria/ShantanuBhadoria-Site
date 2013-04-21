@@ -1,2 +1,4 @@
+<div class="block">
 [% INCLUDE site/form %]
-<a href="/user/add">Register</a>
+  <a href="/user/add">Register</a>
+</div>

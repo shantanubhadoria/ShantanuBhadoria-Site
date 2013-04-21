@@ -1,5 +1,7 @@
 [% IF c.check_user_roles('admin') %]
+<div class="block">
 [% INCLUDE site/form %]
 [% ELSE %]
 Insufficient Priviliges
 [% END %]
+</div>
