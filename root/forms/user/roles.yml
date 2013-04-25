@@ -21,6 +21,6 @@
     - 
         type: Submit
         name: submit
-        value: Add Relationship 
+        value: Add Roles
         attrs:
           handler: submitForm

@@ -22,6 +22,7 @@ Catalyst Controller.
 
 sub base :Chained('/base') :PathPart('article') :CaptureArgs(0){
     my ( $self, $c ) = @_;
+    $c->stash->{current_view} = 'TT';
 }
 
 =head2 index
@@ -32,7 +33,13 @@ sub index :Chained('base') :PathPart('') :Args(1) {
     my ( $self, $c, $article_alias ) = @_;
     my $article_id = $article_alias;
     $article_id =~ s/.*\-//;
-    my $article_row = $c->model('DBIC::Article')->find($article_id);
+    my $article_row = $c->model('DBIC::Article')->find($article_id,
+        {
+            prefetch => {
+                article_tag_maps => 'tag'
+            },
+        },
+    );
     if( $article_row && $article_alias eq $article_row->url_alias . '-' . $article_id ){
         $c->stash(
               template     => 'article/index.tt',
@@ -53,13 +60,19 @@ sub add :Chained('base') :PathPart('add') :Args(0) :FormConfig {
             template     => 'article/add.tt',
             section_name => 'Add Article',
         );
+    my $params = $c->req->params;
 
     my $form = $c->stash->{form};
     $form->stash->{context} = $c;
     
     if ( $form->submitted_and_valid ) {
-        my $params = $c->req->params;
-        my $article = $c->model('DBIC::Article')->new_result({});
+        my $article;
+        if($params->{article_id}) {
+            $article = $c->model('DBIC::Article')->find($params->{article_id});
+        } else {
+            $article = $c->model('DBIC::Article')->new_result({});
+        }
+        $form->add_valid(author_id=>$c->user->id);
         $form->model->update($article);
 
         my $article_title = lc $params->{title};
@@ -71,7 +84,12 @@ sub add :Chained('base') :PathPart('add') :Args(0) :FormConfig {
                 {mid => $c->set_status_msg("Article Added")}));
         $c->detach;
     } else {
-        $c->assets->include("css/form.css");
+        $c->log->debug("Fetching Article " . $params->{article_id});
+        if($params->{article_id}) {
+            $form->model->default_values(
+                $c->model('DBIC::Article')->find($params->{article_id})
+            );
+        }
         $c->assets->include("tinymce/jscripts/tiny_mce/tiny_mce.js");
         $c->assets->include("js/form.js");
     }

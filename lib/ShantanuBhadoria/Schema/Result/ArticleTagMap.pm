@@ -1,4 +1,4 @@
-package ShantanuBhadoria::Schema::Result::UserRoleMap;
+package ShantanuBhadoria::Schema::Result::ArticleTagMap;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -12,83 +12,78 @@ __PACKAGE__->load_components("InflateColumn::DateTime", "PassphraseColumn", "Val
 
 =head1 NAME
 
-ShantanuBhadoria::Schema::Result::UserRoleMap
+ShantanuBhadoria::Schema::Result::ArticleTagMap
 
 =cut
 
-__PACKAGE__->table("user_role_maps");
+__PACKAGE__->table("article_tag_maps");
 
 =head1 ACCESSORS
 
-=head2 user_id
+=head2 article_id
 
   data_type: 'integer'
   extra: {unsigned => 1}
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 role_id
+=head2 tag
 
-  data_type: 'integer'
-  extra: {unsigned => 1}
+  data_type: 'varchar'
   is_foreign_key: 1
   is_nullable: 0
+  size: 255
 
 =cut
 
 __PACKAGE__->add_columns(
-  "user_id",
+  "article_id",
   {
     data_type => "integer",
     extra => { unsigned => 1 },
     is_foreign_key => 1,
     is_nullable => 0,
   },
-  "role_id",
-  {
-    data_type => "integer",
-    extra => { unsigned => 1 },
-    is_foreign_key => 1,
-    is_nullable => 0,
-  },
+  "tag",
+  { data_type => "varchar", is_foreign_key => 1, is_nullable => 0, size => 255 },
 );
-__PACKAGE__->set_primary_key("user_id", "role_id");
+__PACKAGE__->set_primary_key("article_id", "tag");
 
 =head1 RELATIONS
 
-=head2 role
+=head2 article
 
 Type: belongs_to
 
-Related object: L<ShantanuBhadoria::Schema::Result::Role>
+Related object: L<ShantanuBhadoria::Schema::Result::Article>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "role",
-  "ShantanuBhadoria::Schema::Result::Role",
-  { id => "role_id" },
+  "article",
+  "ShantanuBhadoria::Schema::Result::Article",
+  { id => "article_id" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
-=head2 user
+=head2 tag
 
 Type: belongs_to
 
-Related object: L<ShantanuBhadoria::Schema::Result::User>
+Related object: L<ShantanuBhadoria::Schema::Result::Tag>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "user",
-  "ShantanuBhadoria::Schema::Result::User",
-  { id => "user_id" },
+  "tag",
+  "ShantanuBhadoria::Schema::Result::Tag",
+  { tag => "tag" },
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2013-04-25 10:30:30
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:/Jb0PYbPxDzYnv4XwbyZAQ
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2013-04-25 10:54:29
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:06A7n0Vwr7Sk+/JRR24xMA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

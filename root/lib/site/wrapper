@@ -4,102 +4,13 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <title>[% site_title %]: [% section_name %]</title>
-    [% c.assets.export %]
     <!-- Load JQuery -->
-    <style>
-      *{
-        outline:0;
-      }
-      body {
-        margin:0;
-        padding:0;
-        background:#111 url(/static/images/site_background.jpg) no-repeat 50% 0;
-        background-size:80% auto;
-        font-size:.875em;
-        font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
-        color:#ccc;
-      }
-      h1 {
-        margin:10px 0 10px 0;
-        font-size:3.875em;
-        color: #FFF;
-        font-weight:normal;
-      }
-      h1 a:hover {
-        color: #5DB0E6;
-      }
-      a { 
-        text-decoration:none;
-        color:#5DB0E6;
-      }
-      a:hover {
-        color:#ddf;
-        text-decoration:none;
-      }
-      #header {
-        background: url('/static/images/black70.png') repeat scroll 0 0 transparent;
-        height: 60px;
-        margin-bottom: 12px;
-        width: 100%;
-        outline: 0 none;
-      }
-      #logo {
-        margin: 0 auto;
-        padding: 0;
-        float:left;
-      }
-      #logo h1 {
-        margin: 0 0 10px 0;
-      }
-      #navbar {
-        float:left;
-      }
-      #navbar ul{margin:0;padding:0;list-style-type:none;list-style-image:none;}
-      #navbar li{display:inline;}
-      #navbar ul li a{padding:5px 5px 5px 5px;margin:16px 0px 0px 20px;font-size:1.286em;float:right;}
-      #navbar ul li a:hover{color:#000;background:#5DB0E6;}
-      #auth {
-        float:right;
-      }
-      #auth ul{margin:0;padding:0;list-style-type:none;list-style-image:none;}
-      #auth li{display:inline;}
-      #auth ul li a{padding:1px 5px 5px 5px;margin:1px 0px 0px 20px;font-size:0.786em;float:right;}
-      #pagination {
-        background: url('/static/images/black70.png') repeat scroll 0 0 transparent;
-        width: 80%;
-        margin: 0 auto;
-        outline: 0 none;
-      }
-      #content-area {
-        padding:5px;
-      }
-      #footer {
-        margin:0 auto;
-        margin-top:20px;
-        width:100%;
-        height:40px;
-        clear:both;
-        position: absolute;
-        bottom:0;
-        background:transparent url(/static/images/black70.png) repeat;
-      }
-      .wrapper {
-        margin: 0 auto;
-        padding: 0;
-        width: 80%;
-      }
-      .block {
-        width: -moz-fit-content;
-        padding: 15px;
-        margin: 15px;
-        display: table;
-        background:transparent url(/static/images/black70.png) repeat;
-      }
-    </style>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("jquery", "1");
+      google.load("jqueryui", "1");
     </script>
+    [% c.assets.export %]
   </head>
   <body>
     <div id="header">
@@ -109,13 +20,13 @@
         </div>
         <div id="navbar">
           <ul>
-            <li>
-              <a href="[% c.uri_for('/') %]">Home</a>
-            </li>
             [% IF c.user_exists %]
             <li><a href="/user/roles">Roles</a></li>
             <li><a href="/article/add">Add Article</a></li>
             [% END %]
+            <li>
+              <a href="[% c.uri_for('/') %]">Home</a>
+            </li>
           </ul>
         </div>
         <div id="auth">

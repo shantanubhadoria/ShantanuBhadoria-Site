@@ -73,6 +73,10 @@ __PACKAGE__->config(
         render_die         => 1,
     },
 
+    'View::JSON' => {
+        expose_stash => 'json'
+    },
+
     'Plugin::StatusMessage' => {
         session_prefix       => 'status_msg',
         token_param          => 'mid',

@@ -1,2 +1,1 @@
-<h2><a href="/article/[% article.url_alias %]-[% article.id %]/">[% article.title %]</a></h2>
-[% article.content %]
+[% INCLUDE site/article.tt %]

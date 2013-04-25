@@ -56,7 +56,19 @@ __PACKAGE__->table("articles");
   data_type: 'integer'
   extra: {unsigned => 1}
   is_foreign_key: 1
-  is_nullable: 1
+  is_nullable: 0
+
+=head2 created
+
+  data_type: 'datetime'
+  datetime_undef_if_invalid: 1
+  is_nullable: 0
+
+=head2 modified
+
+  data_type: 'datetime'
+  datetime_undef_if_invalid: 1
+  is_nullable: 0
 
 =cut
 
@@ -86,7 +98,19 @@ __PACKAGE__->add_columns(
     data_type => "integer",
     extra => { unsigned => 1 },
     is_foreign_key => 1,
-    is_nullable => 1,
+    is_nullable => 0,
+  },
+  "created",
+  {
+    data_type => "datetime",
+    datetime_undef_if_invalid => 1,
+    is_nullable => 0,
+  },
+  "modified",
+  {
+    data_type => "datetime",
+    datetime_undef_if_invalid => 1,
+    is_nullable => 0,
   },
 );
 __PACKAGE__->set_primary_key("id");
@@ -96,6 +120,21 @@ __PACKAGE__->add_unique_constraint(
 );
 
 =head1 RELATIONS
+
+=head2 article_tag_maps
+
+Type: has_many
+
+Related object: L<ShantanuBhadoria::Schema::Result::ArticleTagMap>
+
+=cut
+
+__PACKAGE__->has_many(
+  "article_tag_maps",
+  "ShantanuBhadoria::Schema::Result::ArticleTagMap",
+  { "foreign.article_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 
 =head2 parent_article
 
@@ -144,12 +183,7 @@ __PACKAGE__->belongs_to(
   "author",
   "ShantanuBhadoria::Schema::Result::User",
   { id => "author_id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "CASCADE",
-    on_update     => "CASCADE",
-  },
+  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
 );
 
 =head2 permissions
@@ -168,8 +202,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2013-03-18 11:01:48
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:uwGB9wI4nObq6TN1NIh2WA
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2013-04-25 10:54:29
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:uwEXoaLEsqhLPSvUf6Nt0Q
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

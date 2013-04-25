@@ -99,8 +99,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2013-03-18 11:01:48
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:6vBOI8Jq7E8D6aKTwiJWOQ
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2013-04-25 10:54:29
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:VdAyp1ngwDQCcH6W4z9Qjw
 
 __PACKAGE__->many_to_many(
   "roles" => 'user_role_maps',

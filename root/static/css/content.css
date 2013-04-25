@@ -1,0 +1,133 @@
+*{
+  outline:0;
+}
+body {
+  padding: 5px;
+  margin: 5px;
+  display: table;
+  color: #000;
+  background:#fff repeat;
+  font-size: 14px;
+}
+a { 
+  color:#4183C4;
+  text-decoration: none;
+}
+a:hover {
+  color:#ddf;
+  text-decoration:none;
+}
+h1 {
+  font-size: 54.25px;
+}
+h1 a {
+  color:#4183C4;
+  text-decoration: none;
+}
+h2 {
+  font-size: 33px;
+}
+h2 a {
+  color:#4183C4;
+  text-decoration: none;
+}
+h3 {
+  font-size: 16.3833px;
+}
+h3 a {
+  color:#4183C4;
+  text-decoration: none;
+}
+td {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+pre {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+thead {
+	background-color: #FFBBBB;
+}
+tfoot {
+	background-color: #BBBBFF;
+}
+th {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+img.left, table.left {
+	float: left;
+	text-align: inherit;
+}
+
+img.center, table.center {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: inherit;
+}
+
+img.center {
+	display: block;
+}
+
+img.right, table.right {
+	float: right;
+	text-align: inherit;
+}
+#header {
+  background: url('/static/images/black70.png') repeat scroll 0 0 transparent;
+  height: 60px;
+  margin-bottom: 12px;
+  width: 100%;
+  outline: 0 none;
+}
+#logo {
+  margin: 0 auto;
+  padding: 0;
+  float:left;
+}
+#logo h1 {
+  margin: 0 0 10px 0;
+}
+#navbar {
+  float:left;
+}
+#navbar ul{margin:0;padding:0;list-style-type:none;list-style-image:none;}
+#navbar li{display:inline;}
+#navbar ul li a{padding:5px 5px 5px 5px;margin:16px 0px 0px 20px;font-size:1.286em;float:right;}
+
+
+.example1 {
+	font-weight: bold;
+	font-size: 14px
+}
+.example2 {
+	font-weight: bold;
+	font-size: 12px;
+	color: #FF0000
+}
+.tablerow1 {
+	background-color: #BBBBBB;
+}
+.bold {
+	font-weight: bold;
+}
+.italic {
+	font-style: italic;
+}
+.underline {
+	text-decoration: underline;
+}
+.left {
+	text-align: inherit;
+}
+.center {
+	text-align: center;
+}
+.right {
+	text-align: right;
+}
+.full {
+	text-align: justify
+}

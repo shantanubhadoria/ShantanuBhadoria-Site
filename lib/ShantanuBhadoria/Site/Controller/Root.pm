@@ -31,7 +31,25 @@ sub base :Chained('/') :PathPart('') :CaptureArgs(0){
     $c->log->debug("In Base");
     $c->stash->{site_title} = 'Shantanu Bhadoria';
     $c->load_status_msgs;
+    $c->assets->include("css/site.css");
+    $c->assets->include("css/jquery.tagit.css");
+    $c->assets->include("js/tag-it.js");
+    $c->assets->include("js/tags.core.js");
 }
+
+=head2 base_json
+
+=cut
+
+sub base_json :Chained('/') :PathPart('') :CaptureArgs(0){
+    my ( $self, $c ) = @_;
+    $c->log->debug("In JSON Base");
+    $c->stash->{current_view} = 'JSON';
+}
+
+=head2 index
+
+=cut
 
 sub index :Chained('/base') :PathPart('') :Args(0) {
     my ( $self, $c ) = @_;
@@ -45,13 +63,15 @@ sub index :Chained('/base') :PathPart('') :Args(0) {
     my $articles = $c->model('DBIC::Article')->search(
         undef,
         {
+            order_by => { 
+                -desc => qw/id/,
+            },
             page => $params->{page} || 1,
             rows => 10,
         },
     );
     $c->stash->{pagination} = $articles->pager();
     $c->stash->{articles}   = $articles;
-    # Hello World
 }
 
 =head2 default
@@ -60,8 +80,7 @@ Standard 404 error page
 
 =cut
 
-#sub default :Path {
-sub default {#:Path {
+sub default {
     my ( $self, $c ) = @_;
     $c->response->body( 'Page not found' );
     $c->response->status(404);

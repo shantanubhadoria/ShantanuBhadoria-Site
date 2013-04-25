@@ -111,7 +111,7 @@ sub login :Chained('base') :PathPart('login') :Args(0) :FormConfig {
         {
             $c->log->debug("*** Authenticated User ***");
             ## $c->user now contains the information related to the user
-            $c->response->redirect($c->uri_for($self->action_for('login'),
+            $c->response->redirect($c->uri_for($c->controller('Root'),
                 {mid => $c->set_status_msg("Login Successful")}));
         } else {
             ### authentication failed.

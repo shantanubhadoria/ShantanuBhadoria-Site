@@ -13,6 +13,10 @@ var submitForm = function() {
 
 tinyMCE.init({
     // General options
+    content_css : "/static/css/content.css",
+    theme_advanced_font_sizes: "15px,12px,13px,14px,16px,18px,20px",
+    font_size_style_values : "10px,12px,13px,14px,16px,18px,20px",
     mode : "textareas",
+    width: "100%",
 });
 
