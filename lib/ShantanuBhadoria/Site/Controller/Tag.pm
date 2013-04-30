@@ -79,18 +79,20 @@ sub list :Chained('base_json') :PathPart('list') :Args(0) {
 sub add :Chained('base_json') :PathPart('add') :Args(0) {
     my ( $self, $c ) = @_;
 
-    my $params = $c->req->params;
-    $c->model('DBIC')->txn_do( sub {
-            my $tag = $c->model('DBIC::Tag')->find_or_create({
-                    tag => $params->{tag},
-                });
-            $tag->add_to_article_tag_maps({
-                    article_id => $params->{article_id}
-                });
-        });
-    $c->stash->{json} = {
-        success => 1,
-    };
+    if ( $c->check_user_roles('admin') ) {
+        my $params = $c->req->params;
+        $c->model('DBIC')->txn_do( sub {
+                my $tag = $c->model('DBIC::Tag')->find_or_create({
+                        tag => $params->{tag},
+                    });
+                $tag->add_to_article_tag_maps({
+                        article_id => $params->{article_id}
+                    });
+            });
+        $c->stash->{json} = {
+            success => 1,
+        };
+    }
 }
 
 =head2 del 
@@ -100,14 +102,16 @@ sub add :Chained('base_json') :PathPart('add') :Args(0) {
 sub del :Chained('base_json') :PathPart('del') :Args(0) {
     my ( $self, $c ) = @_;
 
-    my $params = $c->req->params;
-    my $tag = $c->model('DBIC::ArticleTagMap')->find({
-            article_id => $params->{article_id},
-            tag        => $params->{tag},
-        })->delete;
-    $c->stash->{json} = {
-        success => 1,
-    };
+    if ( $c->check_user_roles('admin') ) {
+        my $params = $c->req->params;
+        my $tag = $c->model('DBIC::ArticleTagMap')->find({
+                article_id => $params->{article_id},
+                tag        => $params->{tag},
+            })->delete;
+        $c->stash->{json} = {
+            success => 1,
+        };
+    }
 }
 
 =head1 AUTHOR

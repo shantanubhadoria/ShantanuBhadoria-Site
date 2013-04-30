@@ -71,38 +71,43 @@ sub add :Chained('base') :PathPart('add') :Args(0) :FormConfig {
     my $form = $c->stash->{form};
     $form->stash->{context} = $c;
     
-    if ( $form->submitted_and_valid ) {
-        my $article;
-        if($params->{article_id}) {
-            $article = $c->model('DBIC::Article')->find($params->{article_id});
-        } else {
-            $article = $c->model('DBIC::Article')->new_result({});
-        }
-        $form->add_valid(author_id=>$c->user->id);
-        $form->model->update($article);
+    if ( $c->check_user_roles('admin') ) {
+        if ( $form->submitted_and_valid ) {
+            my $article;
+            if($params->{article_id}) {
+                $article = $c->model('DBIC::Article')->find($params->{article_id});
+            } else {
+                $article = $c->model('DBIC::Article')->new_result({});
+            }
+            $form->add_valid(author_id=>$c->user->id);
+            $form->model->update($article);
 
-        my $article_title = lc $params->{title};
-        $article_title =~ s/[^a-z0-9]+/\-/g;
+            my $article_title = lc $params->{title};
+            $article_title =~ s/[^a-z0-9]+/\-/g;
 
-        $article->url_alias($article_title);
-        $article->update();
-        if($params->{article_id}) {
-            $c->response->redirect($c->uri_for('/article/' . $article->url_alias . '-' . $article->id,
-                    {mid => $c->set_status_msg("Article Modified")}));
+            $article->url_alias($article_title);
+            $article->update();
+            if($params->{article_id}) {
+                $c->response->redirect($c->uri_for('/article/' . $article->url_alias . '-' . $article->id,
+                        {mid => $c->set_status_msg("Article Modified")}));
+            } else {
+                $c->response->redirect($c->uri_for('/',
+                        {mid => $c->set_status_msg("Article Added")}));
+            }
+            $c->detach;
         } else {
-            $c->response->redirect($c->uri_for('/',
-                    {mid => $c->set_status_msg("Article Added")}));
+            $c->log->debug("Fetching Article " . $params->{article_id});
+            if($params->{article_id}) {
+                $form->model->default_values(
+                    $c->model('DBIC::Article')->find($params->{article_id})
+                );
+            }
+            $c->assets->include("tinymce-4.0b2/js/tinymce/tinymce.min.js");
+            $c->assets->include("js/form.js");
         }
-        $c->detach;
     } else {
-        $c->log->debug("Fetching Article " . $params->{article_id});
-        if($params->{article_id}) {
-            $form->model->default_values(
-                $c->model('DBIC::Article')->find($params->{article_id})
-            );
-        }
-        $c->assets->include("tinymce-4.0b2/js/tinymce/tinymce.min.js");
-        $c->assets->include("js/form.js");
+        $c->response->redirect($c->uri_for($self->action_for('login'),
+                {mid => $c->set_status_msg("Insufficient Privileges")}));
     }
 }
 
