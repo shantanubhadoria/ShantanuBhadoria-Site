@@ -22,6 +22,12 @@ h1 a:hover {
 a { 
   text-decoration:none;
   color:#5DB0E6;
+  -o-transition:color .4s ease-out, background .4s ease-in;
+  -ms-transition:color .4s ease-out, background .4s ease-in;
+  -moz-transition:color .4s ease-out, background .4s ease-in;
+  -webkit-transition:color .4s ease-out, background .4s ease-in;
+  /* ...and now override with proper CSS property */
+  transition:color .4s ease-out, background .4s ease-in;
 }
 a:hover {
   color:#ddf;
@@ -226,6 +232,12 @@ th {
   line-height: inherit;
   position: relative;
   margin-left: 10px;
+  -o-transition:color .4s ease-out, background .4s ease-in;
+  -ms-transition:color .4s ease-out, background .4s ease-in;
+  -moz-transition:color .4s ease-out, background .4s ease-in;
+  -webkit-transition:color .4s ease-out, background .4s ease-in;
+  /* ...and now override with proper CSS property */
+  transition:color .4s ease-out, background .4s ease-in;
 }
 .button-small:hover {
   border: 0px solid #CAD8F3;

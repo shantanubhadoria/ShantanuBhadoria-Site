@@ -20,7 +20,7 @@
         </div>
         <div id="navbar">
           <ul>
-            [% IF c.user_exists %]
+            [% IF c.check_user_roles('admin') %]
             <li><a href="/user/roles">Roles</a></li>
             <li><a href="/article/add">Add Article</a></li>
             [% END %]
