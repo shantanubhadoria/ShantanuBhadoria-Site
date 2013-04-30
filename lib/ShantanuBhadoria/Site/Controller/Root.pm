@@ -35,6 +35,7 @@ sub base :Chained('/') :PathPart('') :CaptureArgs(0){
     $c->assets->include("css/jquery.tagit.css");
     $c->assets->include("js/tag-it.js");
     $c->assets->include("js/tags.core.js");
+    $c->stash->{current_view} = 'TT';
 }
 
 =head2 base_json

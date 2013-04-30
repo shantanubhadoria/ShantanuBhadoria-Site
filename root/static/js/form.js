@@ -1,10 +1,10 @@
 var submitForm = function() {
   form.getForm().submit({
-      success: function(rst, req) {
+    success: function(rst, req) {
       // submission was successful and valid
       // you might want to close the form or something
     },
-      failure: function() {
+    failure: function() {
       // form validation returned errors
       // invalid fields are masked automatically 
     }
@@ -13,10 +13,19 @@ var submitForm = function() {
 
 tinyMCE.init({
     // General options
-    content_css : "/static/css/content.css",
-    theme_advanced_font_sizes: "15px,12px,13px,14px,16px,18px,20px",
-    font_size_style_values : "10px,12px,13px,14px,16px,18px,20px",
     mode : "textareas",
-    width: "100%",
+    theme: "modern",
+    plugins: [
+      "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+      "searchreplace wordcount visualblocks visualchars code fullscreen",
+      "insertdatetime media nonbreaking save table contextmenu directionality",
+      "emoticons template paste textcolor"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    toolbar2: "print preview media | forecolor backcolor emoticons",
+    templates: [
+      {title: 'Test template 1', content: 'Test 1'},
+      {title: 'Test template 2', content: 'Test 2'}
+    ],
 });
 

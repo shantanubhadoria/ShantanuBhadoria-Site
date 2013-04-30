@@ -5,7 +5,6 @@ $.ajax({
 }).done(function(data){
   availableTags = data;
 });
-console.log(availableTags);
 var enableTag = function(article_id){
   $("#tag_article"+article_id).tagit({
     beforeTagAdded: function(event,ui){
@@ -44,6 +43,10 @@ var enableTag = function(article_id){
           return false;
         }
     },
+    onTagClicked: function(event, ui) {
+      window.location.href = '/tag/' + ui.tagLabel + '/' ;
+    },
     availableTags: availableTags,
+    allowSpaces: true,
   });
 };

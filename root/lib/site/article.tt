@@ -1,8 +1,7 @@
 <div class="block" style="width:inherit">
-  <h2><a href="/article/[% article.url_alias %]-[% article.id %]/">[% article.title %]</a></h2> 
+  <h2><a href="/article/[% article.url_alias %]-[% article.id %]/">[% article.title %]</a><a href="/article/add/?article_id=[% article.id %]"><span class="button-small">edit</span></a></h2> 
   <div class="article-tools">
     <span class="created-by">[% article.author.username %]</span> [% article.created.dmy %] [% article.created.hms %]
-
   </div>
   <div class="article-content">
     [% article.content %]

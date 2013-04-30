@@ -30,24 +30,32 @@ a:hover {
 input[type=text]{
   border: 2px solid #5DB0E6;
   border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
   color: #555;
   width:100%;
 }
 input[type=text]:focus{
   outline: none;
   border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
   border-color: #9ecaed;
   box-shadow: 0 0 10px #9ecaed;
 }
 input[type=password]{
   border: 2px solid #5DB0E6;
   border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
   color: #555;
   width:100%;
 }
 input[type=password]:focus{
   outline: none;
   border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
   border-color: #9ecaed;
   box-shadow: 0 0 10px #9ecaed;
 }
@@ -92,6 +100,8 @@ select {
   line-height: 1;
   border: 0;
   border-radius: 0;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
   height: 34px;
   -webkit-appearance: none;
 }
@@ -137,6 +147,13 @@ th {
 	color: #FF0000
 }
 
+.status_msg {
+    color: #0F0;
+}
+.error_msg {
+    color: #F00;
+}
+
 .tablerow1 {
 	background-color: #BBBBBB;
 }
@@ -150,7 +167,11 @@ th {
   padding: 15px;
   margin: 15px;
   display: table;
+  line-height: 30px;
   background:transparent url(/static/images/black70.png) repeat;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
 }
 .block h2 {
   margin:0;
@@ -162,6 +183,14 @@ th {
   padding:5px;
   position:relative;
   width:inherit;
+}
+.article-content {
+  background-color:#fff;
+  color: #000;
+  padding: 20px;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
 }
 .created-by {
   background: url("/static/images/user_input_icon.png") no-repeat scroll 0 6px transparent;
@@ -183,6 +212,25 @@ th {
 .block-content a:hover {
   color:#ddf;
   text-decoration:none;
+}
+.button-small {
+  padding: 0.05em 1.5em 0.05em 1.5em;
+  background-color: transparent;
+  border: 1px solid #5DB0E6;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  color: #5DB0E6;
+  font-size: 10px; 
+  font-weight: bold;
+  line-height: inherit;
+  position: relative;
+  margin-left: 10px;
+}
+.button-small:hover {
+  border: 0px solid #CAD8F3;
+  color:#000;
+  background:#5DB0E6;
 }
 .select{
   width: 390px;
@@ -212,8 +260,19 @@ th {
 }
 #navbar ul{margin:0;padding:0;list-style-type:none;list-style-image:none;}
 #navbar li{display:inline;}
-#navbar ul li a{padding:5px 5px 5px 5px;margin:16px 0px 0px 20px;font-size:1.286em;float:right;}
-#navbar ul li a:hover{color:#000;background:#5DB0E6;}
+#navbar ul li a {
+  padding:5px 5px 5px 5px;
+  margin:16px 0px 0px 20px;
+  font-size:1.286em;
+  float:right;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+#navbar ul li a:hover {
+  color:#000;
+  background:#5DB0E6;
+}
 #auth {
   float:right;
 }

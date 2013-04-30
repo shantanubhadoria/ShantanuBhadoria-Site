@@ -20,6 +20,44 @@ Catalyst Controller.
 
 =cut
 
+sub base :Chained('/base') :PathPart('tag') :CaptureArgs(0){
+    my ( $self, $c ) = @_;
+}
+
+=head2 index 
+
+=cut
+
+sub index :Chained('base') :PathPart('') :Args(1) {
+    my ( $self, $c, $tag ) = @_;
+    my $params = $c->req->params;
+    $c->log->debug("In Index");
+
+    $c->stash(
+            template     => 'index.tt',
+            section_name => $tag,
+        );
+    my $articles = $c->model('DBIC::Article')->search(
+        {
+            'article_tag_maps.tag' => $tag,
+        },
+        {
+            join     => 'article_tag_maps',
+            order_by => { 
+                -desc => qw/id/,
+            },
+            page => $params->{page} || 1,
+            rows => 10,
+        },
+    );
+    $c->stash->{pagination} = $articles->pager();
+    $c->stash->{articles}   = $articles;
+}
+
+=head2 base_json
+
+=cut
+
 sub base_json :Chained('/base_json') :PathPart('tag') :CaptureArgs(0){
     my ( $self, $c ) = @_;
 }

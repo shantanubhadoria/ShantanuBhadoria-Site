@@ -56,9 +56,15 @@ sub index :Chained('base') :PathPart('') :Args(1) {
 sub add :Chained('base') :PathPart('add') :Args(0) :FormConfig {
     my ( $self, $c ) = @_;
 
+    if( !$c->check_user_roles('admin') ) {
+        $c->response->redirect($c->uri_for('/',
+                {mid => $c->set_error_msg("Log in first fuck face!!")}));
+        return;
+    }
+
     $c->stash(
             template     => 'article/add.tt',
-            section_name => 'Add Article',
+            section_name => 'Add/Edit Article',
         );
     my $params = $c->req->params;
 
@@ -80,8 +86,13 @@ sub add :Chained('base') :PathPart('add') :Args(0) :FormConfig {
 
         $article->url_alias($article_title);
         $article->update();
-        $c->response->redirect($c->uri_for('/',
-                {mid => $c->set_status_msg("Article Added")}));
+        if($params->{article_id}) {
+            $c->response->redirect($c->uri_for('/article/' . $article->url_alias . '-' . $article->id,
+                    {mid => $c->set_status_msg("Article Modified")}));
+        } else {
+            $c->response->redirect($c->uri_for('/',
+                    {mid => $c->set_status_msg("Article Added")}));
+        }
         $c->detach;
     } else {
         $c->log->debug("Fetching Article " . $params->{article_id});
@@ -90,7 +101,7 @@ sub add :Chained('base') :PathPart('add') :Args(0) :FormConfig {
                 $c->model('DBIC::Article')->find($params->{article_id})
             );
         }
-        $c->assets->include("tinymce/jscripts/tiny_mce/tiny_mce.js");
+        $c->assets->include("tinymce-4.0b2/js/tinymce/tinymce.min.js");
         $c->assets->include("js/form.js");
     }
 }

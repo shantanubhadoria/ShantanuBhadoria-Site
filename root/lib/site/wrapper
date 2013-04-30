@@ -46,10 +46,10 @@
     <div id="content-area">
       <div class="wrapper">
         [% IF status_msg %]
-        <div class="status_msg messageblock">[% status_msg %]</div>
+        <div class="status_msg block">[% status_msg %]</div>
         [% END %]
         [% IF error_msg %]
-        <div class="error_msg messageblock">[% error_msg %]</div>
+        <div class="block error_msg">[% error_msg %]</div>
         [% END %]
         [% content %]
       </div>

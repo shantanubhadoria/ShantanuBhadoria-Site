@@ -1,6 +1,6 @@
 [% IF pagination %]
-<div id="pagination">
-  Page [% pagination.current_page %] of [% pagination.total_entries %] 
+<div id="pagination" class="topbar-thin">
+  Page [% pagination.current_page %] in [% pagination.total_entries %] results 
     <a href="?page=[% pagination.first_page %]">&lt;&lt; First</a>
     [% IF pagination.previous_page %]
       <a href="?page=[% pagination.previous_page %]">&lt;</a>

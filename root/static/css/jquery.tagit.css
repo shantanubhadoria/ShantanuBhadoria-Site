@@ -1,123 +1,136 @@
+.tag {
+  line-height:17px;
+}
 ul.tagit {
-    padding: 1px 5px;
-    overflow: auto;
-    margin-left: inherit; /* usually we don't want the regular ul margins. */
-    margin-right: inherit;
-    cursor:pointer;
+  padding: 1px 5px;
+  overflow: auto;
+  margin-left: inherit; /* usually we don't want the regular ul margins. */
+  margin-right: inherit;
+  cursor:pointer;
 }
 ul.tagit li {
-    display: block;
-    float: left;
-    margin: 2px 5px 2px 0;
+  display: block;
+  float: left;
+  margin: 2px 5px 2px 0;
 }
 ul.tagit li.tagit-choice {    
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border: 1px solid #CAD8F3;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border: 1px solid #5DB0E6;
 
-    position: relative;
-    line-height: inherit;
-    background-color: skyblue;
-    color:#fff;
-    font-weight: normal;
+  position: relative;
+  line-height: inherit;
+  background: none ;
+  font-weight: bold;
 }
 ul.tagit li.tagit-choice-read-only { 
-    padding: .2em .5em .2em .5em; 
+  padding: .2em .5em .2em .5em; 
 } 
 ul.tagit li.tagit-choice-editable { 
-    padding: .2em 18px .2em .5em; 
+  padding: .2em 18px .2em .5em; 
 } 
 ul.tagit li.tagit-new {
-    padding: .25em 4px .25em 0;
+  padding: .25em 4px .25em 0;
 }
 ul.tagit li.tagit-choice a.tagit-label {
-    cursor: pointer;
-    text-decoration: none;
+  cursor: pointer;
+  text-decoration: none;
 }
 ul.tagit li.tagit-choice .tagit-close {
-    cursor: pointer;
-    position: absolute;
-    right: .4em;
-    top: 50%;
-    margin-top: -8px;
-    line-height: 17px;
+  cursor: pointer;
+  position: absolute;
+  right: .4em;
+  top: 50%;
+  margin-top: -8px;
+  line-height: 17px;
 }
 ul.tagit li.tagit-choice:hover, ul.tagit li.tagit-choice.remove {
-    background-color: #bbcef1;
-    border-color: #6d95e0;
+  background-color: #5DB0E6;
+  border-color: #5DB0E6;
 }
 
 /* used for some custom themes that don't need image icons */
 ul.tagit li.tagit-choice .tagit-close .text-icon {
-    display: inline;
-    font-family: arial, sans-serif;
-    font-size: 16px;
-    line-height: 16px;
-    color: #777;
-}
-ul.tagit li.tagit-choice input {
-    display: block;
-    float: left;
-    margin: 2px 5px 2px 0;
+  display: inline;
+  font-family: arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 16px;
 }
 ul.tagit li.tagit-choice a.tagit-close .text-icon:hover {
-    color: #222;
+  color:#000;
 }
 ul.tagit input[type="text"] {
-    box-shadow: 0 0 10px skyblue;
-    border:none;
-    margin: 0;
-    padding: 0;
-    width: inherit;
-    background-color: inherit;
-    color:skyblue;
+  box-shadow: 0 0 10px skyblue;
+  border:none;
+  width: inherit;
+  background-color: inherit;
+  color:#5DB0E6;
 }
 ul.tagit input[type="text"]:focus {
   box-shadow: 0 0 10px #fff;
 }
+.tagit-choice-editable {
+  color:#5DB0E6;
+}
+.tagit-choice-editable:hover {
+  color:#000;
+}
+.text-icon {
+  color:#fff
+}
 ul.tagit li.tagit-choice .tagit-label:not(a) {
-    color: #555;
+  font-weight:bold;
+}
+ul.tagit li.tagit-choice .tagit-label:not(a):hover {
 }
 /* Autocomplete
  * ----------------------------------*/
-  .ui-autocomplete { position: absolute; cursor: default; }      
-  .ui-autocomplete-loading { background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat; }
+.ui-autocomplete { 
+  position: absolute; 
+  cursor: default; 
+}      
+.ui-autocomplete-loading { 
+  background: white url('/static/images/ui-anim_basic_16x16.gif') right center no-repeat; 
+}
 
-  /* workarounds */
-  * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+/* workarounds */
+* html .ui-autocomplete { 
+  width:1px; 
+} /* without this, the menu expands to 100% in IE6 */
 
-  /* Menu
-   * ----------------------------------*/
-  .ui-menu {
-    list-style:none;
-    padding: 1px;
-    display:block;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    background:#CCC;
-  }
-  .ui-menu .ui-menu {
-    margin-top: -3px;
-  }
-  .ui-menu .ui-menu-item {
-    margin:0;
-    padding: 0;
-    width: 100%;
-  }
-  .ui-menu .ui-menu-item a {
-    text-decoration:none;
-    display:block;
-    padding:.2em .2em;
-    line-height:1.5;
-    zoom:1;
-  }
-  .ui-menu .ui-menu-item a.ui-state-hover,
-  .ui-menu .ui-menu-item a.ui-state-active {
-    background:#BBCEF1;
-    border-color: #6D95E0;
-  }
+/* Menu
+* ----------------------------------*/
+.ui-menu {
+  list-style:none;
+  padding: 1px;
+  display:block;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  background:#CCC;
+}
+.ui-menu .ui-menu {
+  margin-top: -3px;
+}
+.ui-menu .ui-menu-item {
+  margin:0;
+  padding: 0;
+  width: 100%;
+}
+.ui-menu .ui-menu-item a {
+  text-decoration:none;
+  display:block;
+  padding:.2em .2em;
+  line-height:1.5;
+  zoom:1;
+}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+  background:#BBCEF1;
+  border-color: #6D95E0;
+}
 .ui-menu-item {
   background:skyblue;
   -moz-border-radius: 4px;
