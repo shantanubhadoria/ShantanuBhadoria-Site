@@ -309,8 +309,18 @@ th {
   margin: 0 auto;
   outline: 0 none;
 }
+#content-area:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  margin:0px auto;
+}
 #content-area {
   padding:5px;
+  width:80%;
+  margin: 20px auto;
 }
 #footer {
   margin:0 auto;

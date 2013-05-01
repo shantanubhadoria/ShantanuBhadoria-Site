@@ -13,7 +13,7 @@
     [% c.assets.export %]
     <script type="text/javascript">
       $(document).ready(function(){
-        $("#github").github({
+        $(".github").github({
           user: "shantanubhadoria",
           show_extended_info: true,
           show_follows: true,
@@ -56,7 +56,7 @@
     </div>
     [% INCLUDE site/pagination %]
     <div id="content-area">
-      <div class="wrapper">
+      <div class="wrapper" style="float:left;width:705px;padding-right:50px;">
         [% IF status_msg %]
         <div class="status_msg block">[% status_msg %]</div>
         [% END %]
@@ -64,6 +64,10 @@
         <div class="block error_msg">[% error_msg %]</div>
         [% END %]
         [% content %]
+      </div>
+      <div class="wrapper" style="width:auto">
+        <div class="github block" style="float:left">
+        </div>
       </div>
     </div>
     <div id="footer">
