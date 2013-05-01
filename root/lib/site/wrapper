@@ -56,7 +56,7 @@
     </div>
     [% INCLUDE site/pagination %]
     <div id="content-area">
-      <div class="wrapper" style="float:left;width:705px;padding-right:50px;">
+      <div class="wrapper" style="float:left;width:700px;padding-right:50px;">
         [% IF status_msg %]
         <div class="status_msg block">[% status_msg %]</div>
         [% END %]
