@@ -11,6 +11,18 @@
       google.load("jqueryui", "1");
     </script>
     [% c.assets.export %]
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#github").github({
+          user: "shantanubhadoria",
+          show_extended_info: true,
+          show_follows: true,
+          width: "400px",
+          show_repos: 10,
+          oldest_first: false
+        });
+      });
+    </script>
   </head>
   <body>
     <div id="header">

@@ -1,6 +1,33 @@
 [% IF c.check_user_roles('admin') %]
 <div class="block" style="width:inherit">
 [% INCLUDE site/form %]
+<script>
+ $(function(){
+   $( ".upload-button" ).click(function(){
+     $( "#upload-form" ).dialog( "open" );
+   });
+   $( "#upload-form" ).dialog({
+     autoOpen: false,
+     modal:true
+   });
+ });
+</script>
+<div class="submit">
+  <input type="submit" class="upload-button" value="Upload">
+</div>
+<div id="upload-form">
+ <p class="validateTips">All form fields are required.</p>
+ <form>
+ <fieldset>
+ <label for="name">Name</label>
+ <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+ <label for="email">Email</label>
+ <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
+ <label for="password">Password</label>
+ <input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+ </fieldset>
+ </form>
+</div>
 [% ELSE %]
 Insufficient Priviliges
 [% END %]

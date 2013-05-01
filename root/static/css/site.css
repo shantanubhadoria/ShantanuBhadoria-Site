@@ -69,13 +69,13 @@ input[type=submit]{
   -webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
   -moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
   box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
-  border-bottom-color:#333;
-  border:1px solid #61c4ea;
-  background-color:#7cceee;
+  border-bottom-color:#5DB0E6;
+  border:1px solid #5DB0E6;
+  background-color: transparent;
   border-radius:5px;
   -moz-border-radius:5px;
   -webkit-border-radius:5px;
-  color:#333;
+  color:#5DB0E6;
   font-family:'Verdana',Arial,sans-serif;
   font-size:14px;
   font-weight:bold;
@@ -83,9 +83,15 @@ input[type=submit]{
   padding:5px;
   margin:5px;
   cursor:pointer;
+  -o-transition:color .4s ease-out, background .4s ease-in;
+  -ms-transition:color .4s ease-out, background .4s ease-in;
+  -moz-transition:color .4s ease-out, background .4s ease-in;
+  -webkit-transition:color .4s ease-out, background .4s ease-in;
+  /* ...and now override with proper CSS property */
+  transition:color .4s ease-out, background .4s ease-in;
 }
 input[type=submit]:hover{
-  color:#eee;
+  color:#000;
   background:#8cdefe;
 }
 p {
@@ -251,6 +257,12 @@ th {
   overflow: hidden;
   background: url(/static/images/down_arrow_select.jpg) no-repeat right #9BC7DE;
   border: 1px solid #ccc;
+}
+.ui-dialog {
+  background:transparent url(/static/images/black70.png) repeat;
+}
+.ui-dialog-titlebar {
+  background: #000;
 }
 #header {
   background: url('/static/images/black70.png') repeat scroll 0 0 transparent;
