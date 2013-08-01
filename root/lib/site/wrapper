@@ -45,6 +45,7 @@
             <li><a href="/article/add">Add Article</a></li>
             [% END %]
             <li>
+              <a href="[% c.uri_for('/tag/Travelogues/') %]">Travelogues</a>
               <a href="[% c.uri_for('/') %]">Home</a>
             </li>
           </ul>
