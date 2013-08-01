@@ -1,1 +1,6 @@
 [% INCLUDE site/article.tt %]
+<div class="block" style="width:inherit">
+  <div class="article-content">
+    <div class="fb-comments" data-href="[% c.request.base %][% c.request.path %]" data-width="470"></div>
+  </div>
+</div>
