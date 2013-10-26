@@ -6,6 +6,7 @@
     <title>[% site_title %]: [% section_name %]</title>
     <!-- Load JQuery -->
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
     <script type="text/javascript">
       google.load("jquery", "1");
       google.load("jqueryui", "1");
@@ -45,6 +46,7 @@
             <li><a href="/article/add">Add Article</a></li>
             [% END %]
             <li>
+              <a href="[% c.uri_for('/tag/Perl/') %]">Perl</a>
               <a href="[% c.uri_for('/tag/Travelogues/') %]">Travelogues</a>
               <a href="[% c.uri_for('/') %]">Home</a>
             </li>
@@ -86,5 +88,8 @@
           <img style='float:right' id='powered' src="/static/images/btn_88x31_built.png"/>
       </div>
     </div>
+    <script type="text/javascript">
+     $("code").addClass("prettyprint");
+    </script>
   </body>
 </html>
