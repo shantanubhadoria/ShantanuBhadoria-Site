@@ -1,0 +1,7 @@
+<div class="tag-wrapper">
+  <ul class="tag" id="tag_article[% article.id %]">
+    [% FOREACH articleTagMap IN article.article_tag_maps %]
+    <li>[% articleTagMap.tag.tag %]</li>
+    [% END %]
+  </ul>
+</div>

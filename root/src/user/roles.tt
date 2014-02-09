@@ -1,1 +1,1 @@
-[% INCLUDE site/form %]
+[% INCLUDE site/form.tt %]

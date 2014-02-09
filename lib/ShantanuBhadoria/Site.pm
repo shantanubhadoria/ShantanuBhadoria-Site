@@ -69,7 +69,7 @@ __PACKAGE__->config(
         TEMPLATE_EXTENSION => '.tt',
         CATALYST_VAR       => 'c',
         TIMER              => 0,
-        WRAPPER            => 'site/wrapper',
+        WRAPPER            => 'site/wrapper.tt',
         render_die         => 1,
     },
 

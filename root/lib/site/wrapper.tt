@@ -65,7 +65,7 @@
         </div>
       </div>
     </div>
-    [% INCLUDE site/pagination %]
+    [% INCLUDE site/pagination.tt %]
     <div id="content-area">
       <div class="wrapper" style="float:left;width:700px;padding-right:50px;">
         [% IF status_msg %]
@@ -81,7 +81,7 @@
         </div>
       </div>
     </div>
-    [% INCLUDE site/pagination %]
+    [% INCLUDE site/pagination.tt %]
     <div id="footer">
       <div class="wrapper">
           &copy; Shantanu Bhadoria 

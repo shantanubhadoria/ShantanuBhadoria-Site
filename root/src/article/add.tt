@@ -1,6 +1,6 @@
 [% IF c.check_user_roles('admin') %]
 <div class="block" style="width:inherit">
-[% INCLUDE site/form %]
+[% INCLUDE site/form.tt %]
 <script>
  $(function(){
    $( ".upload-button" ).click(function(){
