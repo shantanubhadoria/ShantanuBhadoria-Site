@@ -1,0 +1,9 @@
+<h2>
+  <a href="/article/[% article.url_alias %]-[% article.id %]/">[% article.title %]</a>
+  [% IF c.check_user_roles('admin') %]
+  <a href="/article/add/?article_id=[% article.id %]"><span class="button-small">edit</span></a>
+  [% END %]
+</h2> 
+<div class="article-tools">
+  <span class="created-by">[% article.author.username %]</span> [% article.created.dmy %] [% article.created.hms %]
+</div>

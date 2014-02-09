@@ -1,20 +1,5 @@
 <div class="block" style="width:inherit">
-  <h2>
-    <a href="/article/[% article.url_alias %]-[% article.id %]/">[% article.title %]</a>
-    [% IF c.check_user_roles('admin') %]
-    <a href="/article/add/?article_id=[% article.id %]"><span class="button-small">edit</span></a>
-    [% END %]
-  </h2> 
-  <div class="article-tools">
-    <span class="created-by">[% article.author.username %]</span> [% article.created.dmy %] [% article.created.hms %]
-  </div>
-  <div class="article-content">
-    [% article.content %]
-  </div>
-  [% INCLUDE site/tags.tt %]
+  [% INCLUDE site/article/header.tt %]
+  [% INCLUDE site/article/content.tt %]
+  [% INCLUDE site/article/tags.tt %]
 </div>
-<script type="text/javascript">
-  $(document).ready(function() {
-    enableTag("[% article.id %]");
-  });
-</script>

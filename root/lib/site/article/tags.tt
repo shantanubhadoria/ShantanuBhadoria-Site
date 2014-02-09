@@ -5,3 +5,8 @@
     [% END %]
   </ul>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    enableTag("[% article.id %]");
+  });
+</script>
