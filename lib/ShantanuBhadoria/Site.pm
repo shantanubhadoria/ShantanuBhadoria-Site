@@ -27,8 +27,6 @@ use Catalyst qw/
 
     StatusMessage
 
-    Assets
-
     Session
     Session::Store::FastMmap
     Session::State::Cookie
@@ -82,12 +80,6 @@ __PACKAGE__->config(
         token_param          => 'mid',
         status_msg_stash_key => 'status_msg',
         error_msg_stash_key  => 'error_msg',
-    },
-
-    'Plugin::Assets' => {
-        path        => '/static',
-        output_path => 'built/',
-        minify      => 0,
     },
 
     'Plugin::Authentication' => {

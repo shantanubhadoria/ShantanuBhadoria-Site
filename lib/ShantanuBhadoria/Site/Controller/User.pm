@@ -55,8 +55,6 @@ sub add :Chained('base') :PathPart('add') :Args(0) :FormConfig {
                 {mid => $c->set_status_msg("Registration Successful")}));
         $c->detach;
     } else {
-        $c->assets->include("css/form.css");
-        $c->assets->include("js/form.js");
     }
 }
 
@@ -79,8 +77,6 @@ sub roles :Chained('base') :PathPart('roles') :Args(0) :FormConfig {
                     {mid => $c->set_status_msg("Role Added")}));
             $c->detach;
         } else {
-            $c->assets->include("css/form.css");
-            $c->assets->include("js/form.js");
         }
     } else {
         $c->response->redirect($c->uri_for($self->action_for('login'),
@@ -123,11 +119,6 @@ sub login :Chained('base') :PathPart('login') :Args(0) :FormConfig {
         }
         $c->detach;
     } else {
-        $c->assets->include("css/form.css");
-        #$c->assets->include("js/form.js");
-        #$c->assets->include("extjs/resources/css/ext-all.css");
-        #$c->assets->include("extjs/ext-debug.js");
-        #$c->assets->include("js/user.js");
     }
 }
 

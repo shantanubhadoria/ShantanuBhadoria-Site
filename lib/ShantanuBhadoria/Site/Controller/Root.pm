@@ -31,12 +31,6 @@ sub base :Chained('/') :PathPart('') :CaptureArgs(0){
     $c->log->debug("In Base");
     $c->stash->{site_title} = 'Shantanu Bhadoria';
     $c->load_status_msgs;
-    $c->assets->include("css/site.css");
-    $c->assets->include("js/jquery/jquery.github.js");
-    $c->assets->include("css/jquery/jquery.github.css");
-    $c->assets->include("css/jquery.tagit.css");
-    $c->assets->include("js/tag-it.js");
-    $c->assets->include("js/tags.core.js");
     $c->stash->{current_view} = 'TT';
 }
 
